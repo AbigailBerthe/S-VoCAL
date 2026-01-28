@@ -136,7 +136,7 @@ python evaluation.py origin,residence,spoken_languages e5 cleaned <OUTPUT_TIME> 
 
 -Pipeline predictions: 
 
- -*Data/raw/* ; Filenames include a timestamp (OUTPUT_TIME) printed when running pipeline.py.
+  - *Data/raw/* ; Filenames include a timestamp (OUTPUT_TIME) printed when running pipeline.py.
 
 -Evaluation results:
 
