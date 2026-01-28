@@ -12,3 +12,25 @@ The main contributions of this repository are:
 - an evaluation framework adapted to heterogeneous attribute types.
 
 A reference inference pipeline is provided to illustrate and test the evaluation methodology.
+
+## Dataset: S-VoCAL
+
+The S-VoCAL dataset contains **952 character–book pairs** extracted from **192 novels** available in the public domain (Gutenberg Project).
+
+Each instance corresponds to a fictional character appearing in a specific book, and is annotated with a set of attributes relevant to speaking voice characterization.
+
+### Attributes
+
+The dataset includes 8 attributes:
+
+- Age
+- Gender
+- Origin
+- Residence
+- Spoken languages
+- Occupation
+- Physical health
+- Type (human / non-human)
+
+Attributes are heterogeneous in nature. They include categorical, and open-class values.
+
