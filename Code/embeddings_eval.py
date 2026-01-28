@@ -62,6 +62,9 @@ def create_prompt(attribute = 'spoken_languages', gold = ["English", "French"], 
     task = ATTRIBUTE_TASKS[attribute]
     query = ATTRIBUTE_QUERY[attribute]
 
+    if gold is None:
+        gold = []
+
     gold_text = get_detailed_instruct(task, query + ", ".join(gold))
     pred_text = get_detailed_instruct(task, query + ", ".join(pred))
 
@@ -136,4 +139,5 @@ def mean_cos(merged_df, attributes):
 
 
         
+
 
