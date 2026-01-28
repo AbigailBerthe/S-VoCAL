@@ -141,7 +141,7 @@ python evaluation.py origin,residence,spoken_languages e5 cleaned <OUTPUT_TIME> 
 -Evaluation results:
 
   - Text summary (appended):
-  *Data/evaluation/<datatype>_evaluation_results.txt*
+  *Data/evaluation/raw_evaluation_results.txt*
   
   - Final scores (CSV):
   *Data/evaluation/dataframes/*
