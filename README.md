@@ -130,8 +130,9 @@ The script prints an OUTPUT_TIME identifier, which is required for evaluation.
 
 ```bash
 # Evaluate raw predictions (with automatic post-processing)
-python evaluation.py origin,residence,spoken_languages e5 cleaned <OUTPUT_TIME> qwen3:latest
+python evaluation.py origin,residence,spoken_languages e5 raw <OUTPUT_TIME> qwen3:latest
 ```
+<OUTPUT_TIME> must be replaced by the timestamp printed in the beginning of the pipeline inference (can also be found in the output's title in Data/raw/).
 
 ### Where are the outputs written?
 
