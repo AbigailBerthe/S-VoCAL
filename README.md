@@ -68,7 +68,7 @@ A reference Retrieval-Augmented Generation (RAG) pipeline is provided to illustr
 - 'S-VoCAL_dataset.jsonl' — curated dataset
 - 'wikidata.py' — dataset construction and analysis from Wikidata
 - 'pipeline.py' — reference inference pipeline
-- 'cleaner.py' — post-processing of model outputs, called by 'pipeline.py'
+- 'cleaner.py' — post-processing of model outputs, called by 'evaluation.py'
 - 'evaluation.py' — evaluation orchestration
 - 'evaluation_metrics.py' — discrete and list-based metrics, called by 'evaluation.py'
 - 'embeddings_eval.py' — semantic similarity evaluation for open attributes, called by 'evaluation.py'
