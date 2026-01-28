@@ -90,13 +90,13 @@ def compare_gold_predicted(gold_df, predicted_df, tokenizer, model, attributes):
     predicted_df.columns = predicted_df.columns.str.lower()
 
     # One row per character-book pair
-    gold_df = gold_df.drop_duplicates(subset=['name', 'gutenberg_content'])
+    gold_df = gold_df.drop_duplicates(subset=['name', 'gutenberg_url'])
     predicted_df = predicted_df.drop_duplicates(subset=['character', 'book'])
 
     merged_df = pd.merge(
         gold_df,
         predicted_df,
-        left_on=['name', 'gutenberg_content'],
+        left_on=['name', 'gutenberg_url'],
         right_on=['character', 'book'],
         how='inner',
         suffixes=('_gold', '_pred')
@@ -136,3 +136,4 @@ def mean_cos(merged_df, attributes):
 
 
         
+
