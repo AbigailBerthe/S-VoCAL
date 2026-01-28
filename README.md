@@ -73,6 +73,26 @@ A reference Retrieval-Augmented Generation (RAG) pipeline is provided to illustr
 - 'evaluation_metrics.py' — discrete and list-based metrics, called by 'evaluation.py'
 - 'embeddings_eval.py' — semantic similarity evaluation for open attributes, called by 'evaluation.py'
 
+## How to use this repository
+
+The dataset and evaluation framework can be reused independently of the inference pipeline.
+
+Typical usage:
+1. Load 'S-VoCAL_dataset.jsonl' as a gold reference.
+2. Evaluate predictions from any system using 'evaluation.py'.
+
+Running the reference inference pipeline additionally requires:
+- Ollama
+- a locally available LLM (e.g. 'qwen3:latest')
+
+## Requirements
+
+Install Python dependencies with:
+
+```bash
+pip install -r requirements.txt
+
+
 
 
 
