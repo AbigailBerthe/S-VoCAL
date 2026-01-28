@@ -92,6 +92,16 @@ Install Python dependencies with:
 ```bash
 pip install -r requirements.txt
 
+## Quickstart
+
+### Install dependencies
+```bash
+pip install -r requirements.txt
+
+# Run the reference inference pipeline
+# Running the reference pipeline requires Ollama and a local LLM available in Ollama (e.g. qwen3:latest).
+# Inference with E5-based retrieval
+python pipeline.py origin,residence,spoken_languages e5 qwen3:latest
 
 
 
