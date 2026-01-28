@@ -139,7 +139,7 @@ def main(datatype, rag, attributes, current_time, model_used):
                 # extract both attr
                 predicted['is_human'] = predicted['type'].apply(lambda x: x.get('is_human') if isinstance(x, dict) else None)
                 predicted['character_type'] = predicted['type'].apply(lambda x: x.get('character_type') if isinstance(x, dict) else None)
-                gold_df["is_human"] = gold_df["Type"].str.lower() == "human"
+                gold_df["is_human"] = gold_df["type"].str.lower() == "human"
 
                 total_count = predicted['is_human'].notna().sum()
                 count_ones = predicted['is_human'].sum()  # True = humain
@@ -237,3 +237,4 @@ if __name__ == "__main__":
 
 
     main(datatype, rag, attributes, current_time, model)
+
