@@ -290,7 +290,14 @@ def main(attributes, rag, model):
             continue  # Ignore if the book could not be loaded
 
         character_name = row['Name']
-        character_aliases = [alias.strip() for alias in row['Aliases'].split(',')] if pd.notna(row['Aliases']) else []
+        aliases = row.get('aliases')
+
+        if isinstance(aliases, list):
+            character_aliases = [a.strip() for a in aliases if isinstance(a, str) and a.strip()]
+        elif isinstance(aliases, str):
+            character_aliases = [a.strip() for a in aliases.split(',') if a.strip()]
+        else:
+            character_aliases = []
 
         # Extract mentions
         mentions = extract_character_info(book, character_name, character_aliases)
@@ -360,4 +367,5 @@ if __name__ == "__main__":
     model_name = sys.argv[3]
 
     main(attributes, rag, model_name)
+
 
