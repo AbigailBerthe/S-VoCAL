@@ -110,6 +110,7 @@ Create them once from the root of the repository:
 ```bash
 mkdir -p Data/raw
 mkdir -p Data/evaluation/dataframes
+cd Code
 ```
 
 ### Run the reference inference pipeline
