@@ -91,18 +91,56 @@ Install Python dependencies with:
 
 ```bash
 pip install -r requirements.txt
+```
 
 ## Quickstart
 
 ### Install dependencies
 ```bash
 pip install -r requirements.txt
+```
 
-# Run the reference inference pipeline
-# Running the reference pipeline requires Ollama and a local LLM available in Ollama (e.g. qwen3:latest).
-# Inference with E5-based retrieval
+### Output files and directory structure
+
+The code expects a minimal directory structure to store predictions and evaluation results.
+These directories are **not created automatically** and must exist before running the scripts.
+
+Create them once from the root of the repository:
+
+```bash
+mkdir -p Data/raw
+mkdir -p Data/evaluation/dataframes
+```
+
+### Run the reference inference pipeline
+Running the reference pipeline requires Ollama and a local LLM available in Ollama (e.g. qwen3:latest).
+
+```bash
+# Inference with E5-based retrieval, of attributes origin, residence and spoken_languages
 python pipeline.py origin,residence,spoken_languages e5 qwen3:latest
 
+# Inference using all character mentions
+python pipeline.py origin,residence,spoken_languages all_mentions qwen3:latest
+```
 
+The script prints an OUTPUT_TIME identifier, which is required for evaluation.
 
+### Evaluate predictions
 
+```bash
+# Evaluate raw predictions (with automatic post-processing)
+python evaluation.py origin,residence,spoken_languages e5 cleaned <OUTPUT_TIME> qwen3:latest
+```
+
+### Where are the outputs written?
+
+-Pipeline predictions written to: *Data/raw/*
+ Filenames include a timestamp (OUTPUT_TIME) printed when running pipeline.py.
+
+-Evaluation results
+
+  - Text summary (appended):
+  *Data/evaluation/<datatype>_evaluation_results.txt*
+  
+  - Final scores (CSV):
+  *Data/evaluation/dataframes/*
