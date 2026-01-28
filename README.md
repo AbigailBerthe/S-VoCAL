@@ -45,5 +45,19 @@ The dataset construction process includes:
 
 The released dataset corresponds to the curated version of the dataset of character's attributes used in the experiments reported in the paper.
 
+## Evaluation framework
+
+The evaluation framework is designed to handle the heterogeneous nature of character attributes.
+Evaluation is done by 'evaluation.py' which calls 'embeddings_eval.py' and 'evaluation_metrics.py' depending on the attribute to evaluate, to rely on attribute-specific metrics.
+
+### Attribute-aware evaluation
+
+Different evaluation strategies are applied depending on the attribute type:
+
+- **Closed attributes** (e.g. gender, age): F1-score  
+- **Ordinal attributes** (age): Soft F1-score with distance-based weighting  
+- **List-based attributes** (spoken languages): multi-label micro-F1  
+- **Open-class attributes** (origin, residence, occupation, physical health, type): semantic similarity using instruction-conditioned embeddings and BERTScore
+
 
 
