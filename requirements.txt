@@ -1,0 +1,9 @@
+pandas
+numpy
+requests
+sentence-transformers
+scikit-learn
+torch
+transformers>=4.51.0
+bert-score
+matplotlib
