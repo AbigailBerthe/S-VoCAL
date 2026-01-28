@@ -192,9 +192,12 @@ def split_list(lang_str):
     Split a comma-separated string into a clean Python list.
     Used for gold annotations extracted from spreadsheets.
     """
+    if isinstance(lang_str, list):
+        return lang_str
     if pd.isna(lang_str):
         return []
     if isinstance(lang_str, int):
         print(lang_str)
     return [l.strip() for l in lang_str.split(',') if l.strip()]
+
 
