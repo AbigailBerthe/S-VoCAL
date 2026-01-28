@@ -283,13 +283,13 @@ def main(attributes, rag, model):
     for index, row in df.iterrows():
         print(f"character {n}", flush = True)
         n +=1
-        book_content_link = row['gutenberg_content']
+        book_content_link = row['book']['gutenberg_url']
         book = load_book_from_gutemberg(book_content_link)
 
         if isinstance(book, str) and book.startswith("Error"):
             continue  # Ignore if the book could not be loaded
 
-        character_name = row['Name']
+        character_name = row['name']
         aliases = row.get('aliases')
 
         if isinstance(aliases, list):
@@ -367,5 +367,6 @@ if __name__ == "__main__":
     model_name = sys.argv[3]
 
     main(attributes, rag, model_name)
+
 
 
