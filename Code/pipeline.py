@@ -10,6 +10,26 @@ import numpy as np
 import sys
 from datetime import datetime
 
+def mock_llm_output(attributes):
+    """
+    Fake LLM output for smoke-testing without Ollama.
+    Returns a JSON string following the expected schema.
+    """
+    mock_values = {
+        "age": "adult",
+        "gender": "female",
+        "spoken_languages": ["English"],
+        "origin": ["France"],
+        "residence": ["Paris"],
+        "occupation": ["teacher"],
+        "physical_health": "good",
+        # pipeline expects a dict for type
+        "type": {"is_human": True, "character_type": ""}
+    }
+
+    out = {attr: mock_values.get(attr, None) for attr in attributes}
+    return json.dumps(out, ensure_ascii=False)
+
 def get_detailed_instruct(task_description: str, query: str) -> str:
     """
     Constructs a detailed instruction prompt.
@@ -312,7 +332,10 @@ def main(attributes, rag, model):
 
         if excerpts.strip() != "":
             query = create_query(attributes, excerpts, character_name)
-            output = send_request_ollama(model, query) #qwen3:latest
+            if model == "mock":
+                output = mock_llm_output(attributes)
+            else:
+                output = send_request_ollama(model, query)
             if n==3:
                 #print the last 300 characters
                 print(query[-300:], flush=True)
@@ -367,6 +390,7 @@ if __name__ == "__main__":
     model_name = sys.argv[3]
 
     main(attributes, rag, model_name)
+
 
 
 
