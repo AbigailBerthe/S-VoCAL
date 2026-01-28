@@ -1,4 +1,4 @@
-# S-VoCAL
+# S-VoCAL: A Dataset and Evaluation Framework for Inferring Speaking Voice Character Attributes in Literature
 This repository contains the dataset and code accompanying the paper:  **S-VoCAL: A Dataset and Evaluation Framework for Inferring Speaking Voice Character Attributes in Literature**
 
 It provides the S-VoCAL dataset and the evaluation framework introduced in the paper, as well as the code used to validate the proposed methodology.
