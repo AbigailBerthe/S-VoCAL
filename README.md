@@ -134,10 +134,10 @@ python evaluation.py origin,residence,spoken_languages e5 cleaned <OUTPUT_TIME> 
 
 ### Where are the outputs written?
 
--Pipeline predictions written to: *Data/raw/*
- Filenames include a timestamp (OUTPUT_TIME) printed when running pipeline.py.
+-Pipeline predictions: 
+ -*Data/raw/* ; Filenames include a timestamp (OUTPUT_TIME) printed when running pipeline.py.
 
--Evaluation results
+-Evaluation results:
 
   - Text summary (appended):
   *Data/evaluation/<datatype>_evaluation_results.txt*
