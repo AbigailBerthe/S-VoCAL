@@ -271,7 +271,7 @@ def main(attributes, rag, model):
 
 
     # Load jsonl file with gold character data
-    df = pd.read_json("..Data/S-VoCAL_dataset.jsonl", lines=True)
+    df = pd.read_json("../Data/S-VoCAL_dataset.jsonl", lines=True)
 
     results = []
     output_counter = 0
@@ -360,3 +360,4 @@ if __name__ == "__main__":
     model_name = sys.argv[3]
 
     main(attributes, rag, model_name)
+
