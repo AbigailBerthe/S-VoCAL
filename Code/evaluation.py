@@ -31,6 +31,15 @@ def main(datatype, rag, attributes, current_time, model_used):
     folder = f"../Data/{datatype}"
     gold_df = pd.read_json(f"{folder_gold}/S-VoCAL_dataset.jsonl", lines=True)
 
+    # Flatten nested columns if they exist
+    if "attributes" in gold_df.columns:
+        attrs_df = gold_df["attributes"].apply(pd.Series)
+        gold_df = pd.concat([gold_df.drop(columns=["attributes"]), attrs_df], axis=1)
+
+    if "book" in gold_df.columns:
+        book_df = gold_df["book"].apply(pd.Series)
+        gold_df = pd.concat([gold_df.drop(columns=["book"]), book_df], axis=1)
+
     if datatype == "baseline":
         path = f"{folder}/baseline.csv"
     else: 
@@ -99,7 +108,7 @@ def main(datatype, rag, attributes, current_time, model_used):
                 results += f"Soft F1 score for {attr}: {f1_score_soft}\n"
 
                 # merge soft_score_df with score_df by adding to score_df only the columns that are not already in score_df
-                cols_to_add = [col for col in soft_score_df.columns if col not in score_df.columns or col in ['name', 'book_title']]
+                cols_to_add = [col for col in soft_score_df.columns if col not in score_df.columns or col in ['name', 'book_title', 'book']]
                 merge_on = ['name']
                 if 'book_title' in score_df.columns:
                     merge_on.append('book_title')
@@ -225,5 +234,6 @@ if __name__ == "__main__":
     current_time = sys.argv[4]
 
     model = sys.argv[5]
+
 
     main(datatype, rag, attributes, current_time, model)
