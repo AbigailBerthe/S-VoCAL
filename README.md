@@ -59,5 +59,20 @@ Different evaluation strategies are applied depending on the attribute type:
 - **List-based attributes** (spoken languages): multi-label micro-F1  
 - **Open-class attributes** (origin, residence, occupation, physical health, type): semantic similarity using instruction-conditioned embeddings and BERTScore
 
+## Reference inference pipeline
+
+A reference Retrieval-Augmented Generation (RAG) pipeline is provided to illustrate the use of the dataset and to validate the evaluation framework.
+
+## Repository contents
+
+- 'S-VoCAL_dataset.jsonl' — curated dataset
+- 'wikidata.py' — dataset construction and analysis from Wikidata
+- 'pipeline.py' — reference inference pipeline
+- 'cleaner.py' — post-processing of model outputs, called by 'pipeline.py'
+- 'evaluation.py' — evaluation orchestration
+- 'evaluation_metrics.py' — discrete and list-based metrics, called by 'evaluation.py'
+- 'embeddings_eval.py' — semantic similarity evaluation for open attributes, called by 'evaluation.py'
+
+
 
 
