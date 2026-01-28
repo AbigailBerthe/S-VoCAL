@@ -19,7 +19,7 @@ def merge_dataframes(gold_df, predicted_df):
     merged_df = pd.merge(
         gold_df,
         predicted_df,
-        left_on=['name', 'gutenberg_content'],
+        left_on=['name', 'gutenberg_url'],
         right_on=['character', 'book'],
         how='inner',
         suffixes=('_gold', '_pred')
@@ -241,9 +241,9 @@ def f1_list(gold_df, predicted_df, label_pred='spoken_languages', label_gold='sp
     # Fusion by pair character book
     merged = pd.merge(
         predicted_df,
-        gold_df[['name', 'gutenberg_content', f'{label_pred}_gold']],
+        gold_df[['name', 'gutenberg_url', f'{label_pred}_gold']],
         left_on=['character', 'book'],
-        right_on=['name', 'gutenberg_content'],
+        right_on=['name', 'gutenberg_url'],
         how='inner'
     )
 
@@ -277,3 +277,4 @@ def f1_list(gold_df, predicted_df, label_pred='spoken_languages', label_gold='sp
     f1 = f1_score(filtered_y_true, filtered_y_pred, average='micro') if filtered_y_true else np.nan
     
     return f1 , merged
+
