@@ -48,7 +48,7 @@ The released dataset corresponds to the curated version of the dataset of charac
 ## Evaluation framework
 
 The evaluation framework is designed to handle the heterogeneous nature of character attributes.
-Evaluation is done by 'evaluation.py' which calls 'embeddings_eval.py' and 'evaluation_metrics.py' depending on the attribute to evaluate, to rely on attribute-specific metrics.
+Evaluation is done by ``evaluation.py`` which calls ``embeddings_eval.py`` and ``evaluation_metrics.py`` depending on the attribute to evaluate, to rely on attribute-specific metrics.
 
 ### Attribute-aware evaluation
 
@@ -65,21 +65,21 @@ A reference Retrieval-Augmented Generation (RAG) pipeline is provided to illustr
 
 ## Repository contents
 
-- 'S-VoCAL_dataset.jsonl' — curated dataset
-- 'wikidata.py' — dataset construction and analysis from Wikidata
-- 'pipeline.py' — reference inference pipeline
-- 'cleaner.py' — post-processing of model outputs, called by 'evaluation.py'
-- 'evaluation.py' — evaluation orchestration
-- 'evaluation_metrics.py' — discrete and list-based metrics, called by 'evaluation.py'
-- 'embeddings_eval.py' — semantic similarity evaluation for open attributes, called by 'evaluation.py'
+- ``S-VoCAL_dataset.jsonl`` — curated dataset
+- ``wikidata.py`` — dataset construction and analysis from Wikidata
+- ``pipeline.py`` — reference inference pipeline
+- ``cleaner.py`` — post-processing of model outputs, called by ``evaluation.py``
+- ``evaluation.py`` — evaluation orchestration
+- ``evaluation_metrics.py`` — discrete and list-based metrics, called by ``evaluation.py``
+- ``embeddings_eval.py`` — semantic similarity evaluation for open attributes, called by ``evaluation.py``
 
 ## How to use this repository
 
 The dataset and evaluation framework can be reused independently of the inference pipeline.
 
 Typical usage:
-1. Load 'S-VoCAL_dataset.jsonl' as a gold reference.
-2. Evaluate predictions from any system using 'evaluation.py'.
+1. Load ``S-VoCAL_dataset.jsonl`` as a gold reference.
+2. Evaluate predictions from any system using ``evaluation.py``.
 
 Running the reference inference pipeline additionally requires:
 - Ollama
@@ -89,16 +89,16 @@ Running the reference inference pipeline additionally requires:
 
 Install Python dependencies with:
 
-```bash
+``````bash
 pip install -r requirements.txt
-```
+``````
 
 ## Quickstart
 
 ### Install dependencies
-```bash
+``````bash
 pip install -r requirements.txt
-```
+``````
 
 ### Output files and directory structure
 
@@ -107,31 +107,31 @@ These directories are **not created automatically** and must exist before runnin
 
 Create them once from the root of the repository:
 
-```bash
+``````bash
 mkdir -p Data/raw
 mkdir -p Data/evaluation/dataframes
 cd Code
-```
+``````
 
 ### Run the reference inference pipeline
 Running the reference pipeline requires Ollama and a local LLM available in Ollama (e.g. qwen3:latest).
 
-```bash
+``````bash
 # Inference with E5-based retrieval, of attributes origin, residence and spoken_languages
 python pipeline.py origin,residence,spoken_languages e5 qwen3:latest
 
 # Inference using all character mentions
 python pipeline.py origin,residence,spoken_languages all_mentions qwen3:latest
-```
+``````
 
 The script prints an OUTPUT_TIME identifier, which is required for evaluation.
 
 ### Evaluate predictions
 
-```bash
+``````bash
 # Evaluate raw predictions (with automatic post-processing)
 python evaluation.py origin,residence,spoken_languages e5 raw <OUTPUT_TIME> qwen3:latest
-```
+``````
 <OUTPUT_TIME> must be replaced by the timestamp printed in the beginning of the pipeline inference (can also be found in the output's title in Data/raw/).
 
 ### Where are the outputs written?
