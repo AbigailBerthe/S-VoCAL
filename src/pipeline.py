@@ -7,7 +7,7 @@ import os
 import unicodedata
 from sentence_transformers import SentenceTransformer
 import numpy as np
-import sys
+import argparse
 from datetime import datetime
 
 def mock_llm_output(attributes):
@@ -374,20 +374,39 @@ def main(attributes, rag, model):
 
 print("Script started \n", flush=True)
 if __name__ == "__main__":
-    print("Calling main() \n", flush = True)
-    #check if the correct number of args is given
-    if len(sys.argv) < 4:
-        print("Usage: python script.py <attr1,attr2,...> <rag_strategy> <model_name>")
-        sys.exit(1)
+    print("Calling main()\n", flush=True)
 
-    # 1st argument is the list of attributes to be retrieved
-    attributes = sys.argv[1].split(",")
+    parser = argparse.ArgumentParser(
+        description="Run the S-VoCAL character attribute extraction pipeline."
+    )
 
-    # 2nd arg is the method of excerpts selection (ex: rag ou rag_e5)
-    rag = sys.argv[2]
+    parser.add_argument(
+        "--attributes",
+        type=str,
+        required=True,
+        help="Comma-separated list of attributes to extract, e.g. age,gender,occupation"
+    )
 
-    # 3rd arg is the models name (ex: qwen3:latest)
-    model_name = sys.argv[3]
+    parser.add_argument(
+        "--rag",
+        type=str,
+        required=True,
+        choices=["e5", "all_mentions"],
+        help="Passage selection strategy"
+    )
+
+    parser.add_argument(
+        "--model",
+        type=str,
+        required=True,
+        help="Model name to use, e.g. qwen3 or mock"
+    )
+
+    args = parser.parse_args()
+
+    attributes = [attr.strip() for attr in args.attributes.split(",")]
+    rag = args.rag
+    model_name = args.model
 
     main(attributes, rag, model_name)
 
