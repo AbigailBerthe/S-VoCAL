@@ -147,3 +147,24 @@ python evaluation.py origin,residence,spoken_languages e5 raw <OUTPUT_TIME> qwen
   
   - Final scores (CSV):
   *Data/evaluation/dataframes/*
+
+## Paper
+
+The dataset and methodology are described in the following paper:
+[**S-VoCAL: A Dataset and Evaluation Framework for Inferring Speaking Voice Character Attributes in Literature**](https://arxiv.org/abs/2603.00958)
+
+## Citation
+
+If you use this dataset or code, please cite:
+
+```bibtex
+@misc{berthepardo2026svocaldatasetevaluationframework,
+      title={S-VoCAL: A Dataset and Evaluation Framework for Inferring Speaking Voice Character Attributes in Literature}, 
+      author={Abigail Berthe-Pardo and Gaspard Michel and Elena V. Epure and Christophe Cerisara},
+      year={2026},
+      eprint={2603.00958},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2603.00958}, 
+}
+
