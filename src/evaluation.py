@@ -3,7 +3,7 @@ from evaluation_metrics import compute_f1_score, f1_list, compute_f1_score_soft,
 import pandas as pd
 from embeddings_eval import load_model, compare_gold_predicted, mean_cos
 from datetime import datetime
-import sys
+import argparse
 import numpy as np
 
 
@@ -216,25 +216,56 @@ def main(datatype, rag, attributes, current_time, model_used):
 
 
 if __name__ == "__main__":
-    print("Calling main() \n", flush = True)
-    #check if the correct number of args is given
-    if len(sys.argv) < 4:
-        print("Usage: python script.py <attr1,attr2,...> <rag_strategy> <model_name>")
-        sys.exit(1)
+    print("Calling main()\n", flush=True)
 
-    # 1st argument is the list of attributes to be retrieved
-    attributes = sys.argv[1].split(",")
+    parser = argparse.ArgumentParser(
+        description="Evaluate S-VoCAL predictions against the gold dataset."
+    )
 
-    # 2nd arg is the method of excerpts selection (ex: rag ou rag_e5)
-    rag = sys.argv[2]
+    parser.add_argument(
+        "--attributes",
+        type=str,
+        required=True,
+        help="Comma-separated list of attributes to evaluate, e.g. age,gender,occupation"
+    )
 
-    # 3rd arg is the datatype, usually raw or cleaned
-    datatype = sys.argv[3]
+    parser.add_argument(
+        "--rag",
+        type=str,
+        required=True,
+        choices=["e5", "all_mentions"],
+        help="RAG strategy used to generate the predictions"
+    )
 
-    current_time = sys.argv[4]
+    parser.add_argument(
+        "--datatype",
+        type=str,
+        required=True,
+        choices=["baseline", "raw", "cleaned"],
+        help="Type of prediction file to evaluate"
+    )
 
-    model = sys.argv[5]
+    parser.add_argument(
+        "--current_time",
+        type=str,
+        required=True,
+        help="Timestamp used in the prediction filename"
+    )
 
+    parser.add_argument(
+        "--model",
+        type=str,
+        required=True,
+        help="Model name used to generate predictions"
+    )
+
+    args = parser.parse_args()
+
+    attributes = [attr.strip() for attr in args.attributes.split(",")]
+    rag = args.rag
+    datatype = args.datatype
+    current_time = args.current_time
+    model = args.model
 
     main(datatype, rag, attributes, current_time, model)
 
