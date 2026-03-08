@@ -27,8 +27,8 @@ def main(datatype, rag, attributes, current_time, model_used):
     all_dfs = []
     
     print("starting")
-    folder_gold = "../Data" 
-    folder = f"../Data/{datatype}"
+    folder_gold = "../data" 
+    folder = f"../data/{datatype}"
     gold_df = pd.read_json(f"{folder_gold}/S-VoCAL_dataset.jsonl", lines=True)
 
     # Flatten nested columns if they exist
