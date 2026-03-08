@@ -89,16 +89,16 @@ Running the reference inference pipeline additionally requires:
 
 Install Python dependencies with:
 
-``````bash
+```bash
 pip install -r requirements.txt
-``````
+```
 
 ## Quickstart
 
 ### Install dependencies
-``````bash
+```bash
 pip install -r requirements.txt
-``````
+```
 
 ### Output files and directory structure
 
@@ -107,46 +107,46 @@ These directories are **not created automatically** and must exist before runnin
 
 Create them once from the root of the repository:
 
-``````bash
-mkdir -p Data/raw
-mkdir -p Data/evaluation/dataframes
+```bash
+mkdir -p data/raw
+mkdir -p data/evaluation/dataframes
 cd Code
-``````
+```
 
 ### Run the reference inference pipeline
 Running the reference pipeline requires Ollama and a local LLM available in Ollama (e.g. qwen3:latest).
 
-``````bash
+```bash
 # Inference with E5-based retrieval, of attributes origin, residence and spoken_languages
-python pipeline.py origin,residence,spoken_languages e5 qwen3:latest
+python pipeline.py --attributes origin,residence,spoken_languages --rag e5 --model qwen3:latest
 
 # Inference using all character mentions
-python pipeline.py origin,residence,spoken_languages all_mentions qwen3:latest
-``````
+python pipeline.py --attributes origin,residence,spoken_languages --rag all_mentions --model qwen3:latest
+```
 
 The script prints an OUTPUT_TIME identifier, which is required for evaluation.
 
 ### Evaluate predictions
 
-``````bash
+```bash
 # Evaluate raw predictions (with automatic post-processing)
-python evaluation.py origin,residence,spoken_languages e5 raw <OUTPUT_TIME> qwen3:latest
-``````
-<OUTPUT_TIME> must be replaced by the timestamp printed in the beginning of the pipeline inference (can also be found in the output's title in Data/raw/).
+python evaluation.py --attributes origin,residence,spoken_languages --rag e5 --datatype raw --current_time <OUTPUT_TIME> --model qwen3:latest
+```
+<OUTPUT_TIME> must be replaced by the timestamp printed in the beginning of the pipeline inference (can also be found in the output's title in data/raw/).
 
 ### Where are the outputs written?
 
 -Pipeline predictions: 
 
-  - *Data/raw/* ; Filenames include a timestamp (OUTPUT_TIME) printed when running pipeline.py.
+  - *data/raw/* ; Filenames include a timestamp (OUTPUT_TIME) printed when running pipeline.py.
 
 -Evaluation results:
 
   - Text summary (appended):
-  *Data/evaluation/raw_evaluation_results.txt*
+*data/evaluation/raw_evaluation_results.txt*
   
   - Final scores (CSV):
-  *Data/evaluation/dataframes/*
+    *data/evaluation/dataframes/*
 
 ## Paper
 
