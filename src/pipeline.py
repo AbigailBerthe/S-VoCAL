@@ -291,13 +291,13 @@ def main(attributes, rag, model):
 
 
     # Load jsonl file with gold character data
-    df = pd.read_json("../Data/S-VoCAL_dataset.jsonl", lines=True)
+    df = pd.read_json("../data/S-VoCAL_dataset.jsonl", lines=True)
 
     results = []
     output_counter = 0
     current_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') 
     # Define output file name using the current time to distinguish runs
-    output_file = f"../Data/raw/raw_{model}_rag_{rag}_{'_'.join(attributes)}_{current_time}.csv"
+    output_file = f"../data/raw/raw_{model}_rag_{rag}_{'_'.join(attributes)}_{current_time}.csv"
     print("OUTPUT_TIME:", current_time)
 
     for index, row in df.iterrows():
